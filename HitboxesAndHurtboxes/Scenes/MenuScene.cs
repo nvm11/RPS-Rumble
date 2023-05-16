@@ -18,6 +18,8 @@ namespace HitboxesAndHurtboxes.Scenes
 
         public static Button[] buttons;
 
+        private int scalingFactor;
+
         /// <summary>
         /// initializes the menu scene
         /// </summary>
@@ -26,10 +28,14 @@ namespace HitboxesAndHurtboxes.Scenes
         {
             userInput = new Input();
             buttons = new Button[3];
-            for (int i = 1; i <= buttons.Length; i++)
+
+            scalingFactor = 10;
+            for (int i = 0; i < buttons.Length; i++)
             {
                 Texture2D tempButtontext = content.Load<Texture2D>($"button{i}");
-                buttons[i] = new Button(tempButtontext, new Rectangle((Data.ScreenWidth - tempButtontext.Width) / 2, ((Data.ScreenHeight - tempButtontext.Height) / 2) * i, tempButtontext.Width, tempButtontext.Height));
+                int width = tempButtontext.Width / scalingFactor;
+                int height = tempButtontext.Height / scalingFactor;
+                buttons[i] = new Button(tempButtontext, new Rectangle((Data.ScreenWidth - width) / 2, ((Data.ScreenHeight - height) / 2) + (int)(i * height * 1.5), width, height));
             }
         }
 
@@ -39,17 +45,28 @@ namespace HitboxesAndHurtboxes.Scenes
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            if (buttons[0].BoundingBox.Contains(userInput.ms.Position) && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //play
+            //update input
+            userInput.UpdateMouse(gameTime);
+
+            //update buttons
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].Update(userInput.mouseRect);
+            }
+
+            //change state if needed
+
+            if (buttons[0].ButtonColor == Color.Gray  && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //play
             {
                 Data.CurrentState = 1;
             }
 
-            if (buttons[1].BoundingBox.Contains(userInput.ms.Position) && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //options
+            if (buttons[1].ButtonColor == Color.Gray && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //options
             {
                 Data.CurrentState = 2;
             }
 
-            if (buttons[2].BoundingBox.Contains(userInput.ms.Position) && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //exit
+            if (buttons[2].ButtonColor == Color.Gray && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //exit
             {
                 Data.Exit = true;
             }
@@ -62,17 +79,9 @@ namespace HitboxesAndHurtboxes.Scenes
         /// <param name="gameTime">_gameTime</param>
         public override void Draw(SpriteBatch sb, GameTime gameTime)
         {
-            for(int i = 0; i < buttons.Length; i++)
+            for (int i = 0; i < buttons.Length; i++)
             {
-                if (buttons[i].BoundingBox.Intersects(userInput.mouseRect))
-                {
-                    sb.Draw(buttons[i].Texture, buttons[i].BoundingBox, Color.Gray);
-                }
-
-                else
-                {
-                    sb.Draw(buttons[i].Texture, buttons[i].BoundingBox, Color.White);
-                }
+                sb.Draw(buttons[i].Texture, buttons[i].BoundingBox, buttons[i].ButtonColor);   
             }
         }
     }

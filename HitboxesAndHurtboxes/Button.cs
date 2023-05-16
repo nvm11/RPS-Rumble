@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HitboxesAndHurtboxes
@@ -21,15 +22,47 @@ namespace HitboxesAndHurtboxes
         public Rectangle BoundingBox { get; set; }
 
         /// <summary>
+        /// gets or sets the color of the button
+        /// </summary>
+        public Color ButtonColor { get; set; }
+
+        /// <summary>
         /// Creates a button object with a 
         /// texture and bounding box
         /// </summary>
         /// <param name="texture">texture of the button</param>
         /// <param name="boundingBox">rectangle that contains button</param>
-        public Button(Texture2D texture, Rectangle boundingBox)
+        /// <param name="color">color of the button</param>
+        public Button(Texture2D texture, Rectangle boundingBox, Color color)
         {
             this.Texture = texture;
             this.BoundingBox = boundingBox;
+            this.ButtonColor = color;
+        }
+
+        /// <summary>
+        /// creates a button with a default color of white
+        /// </summary>
+        /// <param name="texture">texture of button</param>
+        /// <param name="boundingBox">rectangle of the button</param>
+        public Button(Texture2D texture, Rectangle boundingBox)
+            : this(texture, boundingBox, Color.White) { }
+
+        /// <summary>
+        /// updates the color of the button
+        /// </summary>
+        /// <param name="mouseRect">mouse's position (rectangle)</param>
+        public void Update(Rectangle mouseRect)
+        {
+            if (this.BoundingBox.Contains(mouseRect))
+            {
+                this.ButtonColor = Color.Gray;
+            }
+
+            else
+            {
+                this.ButtonColor = Color.White;
+            }
         }
     }
 }
