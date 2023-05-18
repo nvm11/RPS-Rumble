@@ -34,6 +34,7 @@ namespace HitboxesAndHurtboxes.Managers
             switch (Data.CurrentState)
             {
                 case 0: //menu
+                    ms.Update(gameTime);
                     break;
 
                 case 1: //game
@@ -54,7 +55,6 @@ namespace HitboxesAndHurtboxes.Managers
             switch (Data.CurrentState)
             {
                 case 0: //menu
-
                     ms.Draw(sb, gameTime);
                     break;
 

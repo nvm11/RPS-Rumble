@@ -30,6 +30,7 @@ namespace HitboxesAndHurtboxes.Scenes
             buttons = new Button[3];
 
             scalingFactor = 10;
+
             for (int i = 0; i < buttons.Length; i++)
             {
                 Texture2D tempButtontext = content.Load<Texture2D>($"button{i}");
@@ -51,7 +52,7 @@ namespace HitboxesAndHurtboxes.Scenes
             //update buttons
             for (int i = 0; i < buttons.Length; i++)
             {
-                buttons[i].Update(userInput.mouseRect);
+                buttons[i].Update(userInput.mousePos);
             }
 
             //change state if needed

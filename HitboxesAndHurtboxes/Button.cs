@@ -52,9 +52,9 @@ namespace HitboxesAndHurtboxes
         /// updates the color of the button
         /// </summary>
         /// <param name="mouseRect">mouse's position (rectangle)</param>
-        public void Update(Rectangle mouseRect)
+        public void Update(Point mousePos)
         {
-            if (this.BoundingBox.Contains(mouseRect))
+            if (this.BoundingBox.Contains(mousePos))
             {
                 this.ButtonColor = Color.Gray;
             }

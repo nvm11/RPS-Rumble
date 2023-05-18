@@ -14,7 +14,7 @@ namespace HitboxesAndHurtboxes.Managers
     {
         public MouseState ms;
         public MouseState prevMs;
-        public Rectangle mouseRect;
+        public Point mousePos;
 
         /// <summary>
         /// updates the mouse's position and bounding box
@@ -24,7 +24,7 @@ namespace HitboxesAndHurtboxes.Managers
         {
             prevMs = ms;
             ms = Mouse.GetState();
-            mouseRect = new Rectangle(ms.X, ms.Y, 1, 1);
+            mousePos = ms.Position;
         }
 
         /// <summary>
