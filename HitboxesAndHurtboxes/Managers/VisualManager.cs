@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//manages the gameplay scene of the game
-namespace HitboxesAndHurtboxes.Scenes
+namespace HitboxesAndHurtboxes.Managers
 {
-    internal class GameScene
+    internal class VisualManager
     {
     }
 }

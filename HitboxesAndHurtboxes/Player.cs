@@ -40,5 +40,7 @@ namespace HitboxesAndHurtboxes
             get { return health; }
             set { health = value; }
         }
+
+
     }
 }

@@ -37,10 +37,13 @@ namespace HitboxesAndHurtboxes.Managers
                     ms.Update(gameTime);
                     break;
 
-                case 1: //game
+                case 1: //char select
                     break;
 
                 case 2: //options
+                    break;
+
+                case 3: //char select
                     break;
             }
         }
@@ -58,10 +61,13 @@ namespace HitboxesAndHurtboxes.Managers
                     ms.Draw(sb, gameTime);
                     break;
 
-                case 1: //game
+                case 1: //char select
                     break;
 
                 case 2: //options
+                    break;
+
+                case 3: //char select
                     break;
             }
         }
