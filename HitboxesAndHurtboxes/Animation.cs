@@ -171,7 +171,7 @@ namespace HitboxesAndHurtboxes
         /// Updates the current frame for the animation
         /// </summary>
         /// <param name="gameTime">Game time information</param>
-        private void UpdateAnimation(GameTime gameTime)
+        public void UpdateAnimation(GameTime gameTime)
         {
             // Add to the time counter (need TOTALSECONDS here)
             TimeCounter += gameTime.ElapsedGameTime.TotalSeconds;
