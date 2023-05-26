@@ -53,8 +53,11 @@ namespace HitboxesAndHurtboxes.Scenes
             playerOneSelect = new Animation(charSelectText, 6, 1, 6);
             playerTwoSelect = new Animation(charSelectText, 6, 1, 6);
 
-            playerOneLeft = new Button(arrowButtonText, new Rectangle((int)(playerOnePos.X - 50), (int)playerOnePos.Y, arrowButtonText.Width, arrowButtonText.Height));
+            playerOneLeft = new Button(arrowButtonText, new Rectangle((int)(playerOnePos.X - 50), (int)playerOnePos.Y, arrowButtonText.Width, arrowButtonText.Height), SpriteEffects.FlipHorizontally);
             playerOneRight = new Button(arrowButtonText, new Rectangle((int)(playerOnePos.X + playerOneSelect.SourceRectangle.Width + 50), (int)playerOnePos.Y, arrowButtonText.Width, arrowButtonText.Height));
+
+            playerTwoLeft = new Button(arrowButtonText, new Rectangle((int)(playerTwoPos.X - 50), (int)playerTwoPos.Y, arrowButtonText.Width, arrowButtonText.Height), SpriteEffects.FlipHorizontally);
+            playerTwoRight = new Button(arrowButtonText, new Rectangle((int)(playerTwoPos.X + playerTwoSelect.SourceRectangle.Width + 50), (int)playerTwoPos.Y, arrowButtonText.Width, arrowButtonText.Height));
 
             buttons = new Button[4];
             buttons[0] = playerOneLeft;

@@ -80,9 +80,9 @@ namespace HitboxesAndHurtboxes.Scenes
         /// <param name="gameTime">_gameTime</param>
         public override void Draw(SpriteBatch sb, GameTime gameTime)
         {
-            for (int i = 0; i < buttons.Length; i++)
+            foreach(Button button in buttons)
             {
-                sb.Draw(buttons[i].Texture, buttons[i].BoundingBox, buttons[i].ButtonColor);   
+                button.Draw(sb, button.BoundingBox.Location.ToVector2());
             }
         }
     }
