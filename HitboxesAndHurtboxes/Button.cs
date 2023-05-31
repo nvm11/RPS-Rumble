@@ -50,7 +50,7 @@ namespace HitboxesAndHurtboxes
             this.BoundingBox = boundingBox;
             this.ButtonColor = color;
             this.SpriteEffect = spriteEffect;
-            this.Scale = boundingBox.Width / texture.Width;
+            this.Scale = (float)boundingBox.Width / (float)texture.Width;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace HitboxesAndHurtboxes
         /// </summary>
         public void Draw(SpriteBatch sb, Vector2 position)
         {
-            sb.Draw(this.Texture, position, BoundingBox, this.ButtonColor, 0.0f, Vector2.Zero, this.Scale, this.SpriteEffect, 1.0f);
+            sb.Draw(this.Texture, this.BoundingBox, null, this.ButtonColor, 0.0f, Vector2.Zero, this.SpriteEffect, 1.0f);
         }
     }
 }
