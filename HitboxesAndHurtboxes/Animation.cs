@@ -59,6 +59,8 @@ namespace HitboxesAndHurtboxes
         /// </summary>
         public Rectangle SourceRectangle { get; set; }
 
+        public Vector2 Position { get; set; }
+
         /// <summary>
         /// color of sprite
         /// </summary>
@@ -157,13 +159,10 @@ namespace HitboxesAndHurtboxes
         /// draws the sprite with the specified properties, as well as the color stored by the animation
         /// </summary>
         /// <param name="sb">_spritebatch</param>
-        /// <param name="gameTime">gameRime</param>
-        /// <param name="position">position to move bounding box to</param>
-        /// <param name="effect">is the sprite flipped?</param>
-        /// <returns>true if the animation is at the final frame, false otherwise</returns>
-        public bool Draw(SpriteBatch sb, GameTime gameTime, Vector2 position, SpriteEffects effect)
+        /// <param name="gameTime">gameTime</param>
+        public bool Draw(SpriteBatch sb, GameTime gameTime)
         {
-            return Draw(sb, gameTime, position, Color, effect);
+            return Draw(sb, gameTime, this.Position, Color, this.SpriteEffect);
         }
 
 

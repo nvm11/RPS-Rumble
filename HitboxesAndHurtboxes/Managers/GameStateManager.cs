@@ -15,6 +15,7 @@ namespace HitboxesAndHurtboxes.Managers
     public class GameStateManager : Component
     {
         MenuScene ms = new MenuScene();
+        CharSelectScene cs = new CharSelectScene();
 
         /// <summary>
         /// initializes the menu scene
@@ -23,6 +24,7 @@ namespace HitboxesAndHurtboxes.Managers
         public override void Initialize(ContentManager content)
         {
             ms.Initialize(content);
+            cs.Initialize(content);
         }
 
         /// <summary>
@@ -38,12 +40,13 @@ namespace HitboxesAndHurtboxes.Managers
                     break;
 
                 case 1: //char select
+                    cs.Update(gameTime);
                     break;
 
                 case 2: //options
                     break;
 
-                case 3: //char select
+                case 3: //gameplay
                     break;
             }
         }
@@ -62,12 +65,13 @@ namespace HitboxesAndHurtboxes.Managers
                     break;
 
                 case 1: //char select
+                    cs.Draw(sb, gameTime);
                     break;
 
                 case 2: //options
                     break;
 
-                case 3: //char select
+                case 3: //gameplay
                     break;
             }
         }

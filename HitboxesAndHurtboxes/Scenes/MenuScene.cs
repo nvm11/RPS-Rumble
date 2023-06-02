@@ -57,7 +57,7 @@ namespace HitboxesAndHurtboxes.Scenes
 
             //change state if needed
 
-            if (buttons[0].ButtonColor == Color.Gray  && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //play
+            if (buttons[0].ButtonColor == Color.Gray  && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //char select
             {
                 Data.CurrentState = 1;
             }
@@ -82,7 +82,7 @@ namespace HitboxesAndHurtboxes.Scenes
         {
             foreach(Button button in buttons)
             {
-                button.Draw(sb, button.BoundingBox.Location.ToVector2());
+                button.Draw(sb);
             }
         }
     }

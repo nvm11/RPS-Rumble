@@ -15,7 +15,7 @@ namespace HitboxesAndHurtboxes.Scenes
 {
     internal class CharSelectScene : Component
     {
-        public Input input;
+        public Input useerInput;
 
         public static Color[] characterClrs = { Color.White, Color.Red, Color.Blue, Color.Yellow, Color.Green, Color.Orange, Color.Pink, Color.Purple, Color.Brown };
         public int playerOneClr;
@@ -39,19 +39,18 @@ namespace HitboxesAndHurtboxes.Scenes
         private Button[] buttons;
         public override void Initialize(ContentManager content)
         {
-            input = new Input();
+            useerInput = new Input();
 
             playerOneClr = 0;
             playerTwoClr = 0;
-
-            playerOnePos = new Vector2(Data.ScreenWidth / 4, Data.ScreenHeight / 2);
-            playerTwoPos = new Vector2(Data.ScreenWidth - (Data.ScreenWidth / 4), Data.ScreenHeight / 2);
 
             charSelectText = content.Load<Texture2D>("RPS_CharSelect");
             arrowButtonText = content.Load<Texture2D>("Arrow");
 
             playerOneSelect = new Animation(charSelectText, 6, 1, 6);
             playerTwoSelect = new Animation(charSelectText, 6, 1, 6);
+            playerOneSelect.Position = new Vector2(Data.ScreenWidth / 4, Data.ScreenHeight / 2);
+            playerTwoSelect.Position = new Vector2(Data.ScreenWidth - (Data.ScreenWidth / 4), Data.ScreenHeight / 2);
 
             playerOneLeft = new Button(arrowButtonText, new Rectangle((int)(playerOnePos.X - 50), (int)playerOnePos.Y, arrowButtonText.Width, arrowButtonText.Height), SpriteEffects.FlipHorizontally);
             playerOneRight = new Button(arrowButtonText, new Rectangle((int)(playerOnePos.X + playerOneSelect.SourceRectangle.Width + 50), (int)playerOnePos.Y, arrowButtonText.Width, arrowButtonText.Height));
@@ -68,12 +67,14 @@ namespace HitboxesAndHurtboxes.Scenes
 
         public override void Update(GameTime gameTime)
         {
+            useerInput.UpdateMouse(gameTime);
+
             foreach(Button button in buttons)
             {
-                button.Update(input.mousePos);
+                button.Update(useerInput.mousePos);
             }
 
-            if (playerOneLeft.ButtonColor == Color.Gray && input.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            if (playerOneLeft.ButtonColor == Color.Gray && useerInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
             {
                 playerOneClr -= 1;
                 if (playerOneClr < 0)
@@ -83,7 +84,7 @@ namespace HitboxesAndHurtboxes.Scenes
 
             }
 
-            else if (playerTwoLeft.ButtonColor == Color.Gray && input.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            else if (playerTwoLeft.ButtonColor == Color.Gray && useerInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
             {
                 playerTwoClr -= 1;
                 if (playerTwoClr < 0)
@@ -93,7 +94,7 @@ namespace HitboxesAndHurtboxes.Scenes
 
             }
 
-            else if (playerOneRight.ButtonColor == Color.Gray && input.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            else if (playerOneRight.ButtonColor == Color.Gray && useerInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
             {
                 playerOneClr += 1;
                 if (playerOneClr == characterClrs.Length)
@@ -103,7 +104,7 @@ namespace HitboxesAndHurtboxes.Scenes
 
             }
 
-            else if (playerTwoRight.ButtonColor == Color.Gray && input.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            else if (playerTwoRight.ButtonColor == Color.Gray && useerInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
             {
                 playerTwoClr += 1;
                 if (playerTwoClr == characterClrs.Length)
@@ -119,7 +120,13 @@ namespace HitboxesAndHurtboxes.Scenes
 
         public override void Draw(SpriteBatch sb, GameTime gameTime)
         {
-            //edit button class to have spritebatch.Flip
+            foreach(Button button in buttons)
+            {
+                button.Draw(sb);
+            }
+
+            playerOneSelect.Draw(sb, gameTime);
+            playerTwoSelect.Draw(sb, gameTime);
         }
     }
 }

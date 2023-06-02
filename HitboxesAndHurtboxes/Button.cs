@@ -28,11 +28,6 @@ namespace HitboxesAndHurtboxes
         public Color ButtonColor { get; set; }
 
         /// <summary>
-        /// Scale of the image displayed on the button
-        /// </summary>
-        public float Scale { get; set; }
-
-        /// <summary>
         /// gets o sets the sprite effect of the button
         /// </summary>
         public SpriteEffects SpriteEffect { get; set; }
@@ -50,7 +45,6 @@ namespace HitboxesAndHurtboxes
             this.BoundingBox = boundingBox;
             this.ButtonColor = color;
             this.SpriteEffect = spriteEffect;
-            this.Scale = (float)boundingBox.Width / (float)texture.Width;
         }
 
         /// <summary>
@@ -93,7 +87,7 @@ namespace HitboxesAndHurtboxes
         /// <summary>
         /// draws the button 
         /// </summary>
-        public void Draw(SpriteBatch sb, Vector2 position)
+        public void Draw(SpriteBatch sb)
         {
             sb.Draw(this.Texture, this.BoundingBox, null, this.ButtonColor, 0.0f, Vector2.Zero, this.SpriteEffect, 1.0f);
         }
