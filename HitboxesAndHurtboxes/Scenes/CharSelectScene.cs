@@ -21,9 +21,6 @@ namespace HitboxesAndHurtboxes.Scenes
         public int playerOneClr;
         public int playerTwoClr;
 
-        public Vector2 playerOnePos;
-        public Vector2 playerTwoPos;
-
         private Texture2D charSelectText;
         private Texture2D arrowButtonText;
 
@@ -52,17 +49,17 @@ namespace HitboxesAndHurtboxes.Scenes
             playerOneSelect.Position = new Vector2(Data.ScreenWidth / 4, Data.ScreenHeight / 2);
             playerTwoSelect.Position = new Vector2(Data.ScreenWidth - (Data.ScreenWidth / 4), Data.ScreenHeight / 2);
 
-            playerOneLeft = new Button(arrowButtonText, new Rectangle((int)(playerOnePos.X - 50), (int)playerOnePos.Y, arrowButtonText.Width, arrowButtonText.Height), SpriteEffects.FlipHorizontally);
-            playerOneRight = new Button(arrowButtonText, new Rectangle((int)(playerOnePos.X + playerOneSelect.SourceRectangle.Width + 50), (int)playerOnePos.Y, arrowButtonText.Width, arrowButtonText.Height));
+            playerOneLeft = new Button(arrowButtonText, new Rectangle((int)(playerOneSelect.Position.X - 50), (int)playerOneSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4), SpriteEffects.FlipHorizontally);
+            playerOneRight = new Button(arrowButtonText, new Rectangle((int)(playerOneSelect.Position.X + playerOneSelect.SourceRectangle.Width + 50), (int)playerOneSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4));
 
-            playerTwoLeft = new Button(arrowButtonText, new Rectangle((int)(playerTwoPos.X - 50), (int)playerTwoPos.Y, arrowButtonText.Width, arrowButtonText.Height), SpriteEffects.FlipHorizontally);
-            playerTwoRight = new Button(arrowButtonText, new Rectangle((int)(playerTwoPos.X + playerTwoSelect.SourceRectangle.Width + 50), (int)playerTwoPos.Y, arrowButtonText.Width, arrowButtonText.Height));
+            playerTwoLeft = new Button(arrowButtonText, new Rectangle((int)(playerTwoSelect.Position.X - 50), (int)playerTwoSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4), SpriteEffects.FlipHorizontally);
+            playerTwoRight = new Button(arrowButtonText, new Rectangle((int)(playerTwoSelect.Position.X + playerTwoSelect.SourceRectangle.Width + 50), (int)playerTwoSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4));
 
             buttons = new Button[4];
             buttons[0] = playerOneLeft;
             buttons[1] = playerOneRight;
-            buttons[2] = playerOneLeft;
-            buttons[3] = playerOneRight;
+            buttons[2] = playerTwoLeft;
+            buttons[3] = playerTwoRight;
         }
 
         public override void Update(GameTime gameTime)
