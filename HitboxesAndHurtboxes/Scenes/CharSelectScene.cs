@@ -15,7 +15,7 @@ namespace HitboxesAndHurtboxes.Scenes
 {
     internal class CharSelectScene : Component
     {
-        public Input useerInput;
+        public Input userInput;
 
         public static Color[] characterClrs = { Color.White, Color.Red, Color.Blue, Color.Yellow, Color.Green, Color.Orange, Color.Pink, Color.Purple, Color.Brown };
         public int playerOneClr;
@@ -36,7 +36,7 @@ namespace HitboxesAndHurtboxes.Scenes
         private Button[] buttons;
         public override void Initialize(ContentManager content)
         {
-            useerInput = new Input();
+            userInput = new Input();
 
             playerOneClr = 0;
             playerTwoClr = 0;
@@ -64,24 +64,24 @@ namespace HitboxesAndHurtboxes.Scenes
 
         public override void Update(GameTime gameTime)
         {
-            useerInput.UpdateMouse(gameTime);
+            userInput.UpdateMouse(gameTime);
 
             foreach(Button button in buttons)
             {
-                button.Update(useerInput.mousePos);
+                button.Update(userInput.mousePos);
             }
 
-            if (playerOneLeft.ButtonColor == Color.Gray && useerInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            if (playerOneLeft.ButtonColor == Color.Gray && userInput.LeftButtonReleased())
             {
                 playerOneClr -= 1;
                 if (playerOneClr < 0)
                 {
                     playerOneClr = characterClrs.Length - 1;
                 }
-
+                playerOneSelect.Color = characterClrs[playerOneClr];
             }
 
-            else if (playerTwoLeft.ButtonColor == Color.Gray && useerInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            else if (playerTwoLeft.ButtonColor == Color.Gray && userInput.LeftButtonReleased())
             {
                 playerTwoClr -= 1;
                 if (playerTwoClr < 0)
@@ -89,26 +89,29 @@ namespace HitboxesAndHurtboxes.Scenes
                     playerTwoClr = characterClrs.Length - 1;
                 }
 
+                playerTwoSelect.Color = characterClrs[playerTwoClr];
             }
 
-            else if (playerOneRight.ButtonColor == Color.Gray && useerInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            else if (playerOneRight.ButtonColor == Color.Gray && userInput.LeftButtonReleased())
             {
                 playerOneClr += 1;
                 if (playerOneClr == characterClrs.Length)
                 {
                     playerOneClr = 0;
+
+                    playerOneSelect.Color = characterClrs[playerOneClr];
                 }
 
             }
 
-            else if (playerTwoRight.ButtonColor == Color.Gray && useerInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            else if (playerTwoRight.ButtonColor == Color.Gray && userInput.LeftButtonReleased())
             {
                 playerTwoClr += 1;
                 if (playerTwoClr == characterClrs.Length)
                 {
                     playerTwoClr = 0;
                 }
-
+                playerTwoSelect.Color = characterClrs[playerTwoClr];
             }
 
             playerOneSelect.UpdateAnimation(gameTime);
