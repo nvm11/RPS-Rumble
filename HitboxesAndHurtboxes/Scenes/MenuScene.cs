@@ -18,7 +18,7 @@ namespace HitboxesAndHurtboxes.Scenes
 
         public static Button[] buttons;
 
-        private int scalingFactor;
+        public static int scalingFactor;
 
         /// <summary>
         /// initializes the menu scene

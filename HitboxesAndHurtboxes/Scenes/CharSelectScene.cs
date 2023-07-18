@@ -23,6 +23,7 @@ namespace HitboxesAndHurtboxes.Scenes
 
         private Texture2D charSelectText;
         private Texture2D arrowButtonText;
+        private Texture2D startText;
 
         private Animation playerOneSelect;
         private Animation playerTwoSelect;
@@ -33,6 +34,8 @@ namespace HitboxesAndHurtboxes.Scenes
         private Button playerTwoLeft;
         private Button playerTwoRight;
 
+        private Button startButton;
+
         private Button[] buttons;
         public override void Initialize(ContentManager content)
         {
@@ -40,9 +43,9 @@ namespace HitboxesAndHurtboxes.Scenes
 
             playerOneClr = 0;
             playerTwoClr = 0;
-
             charSelectText = content.Load<Texture2D>("RPS_CharSelect");
             arrowButtonText = content.Load<Texture2D>("Arrow");
+            startText = content.Load<Texture2D>("button0");
 
             playerOneSelect = new Animation(charSelectText, 6, 1, 6);
             playerTwoSelect = new Animation(charSelectText, 6, 1, 6);
@@ -50,23 +53,26 @@ namespace HitboxesAndHurtboxes.Scenes
             playerTwoSelect.Position = new Vector2(Data.ScreenWidth - (Data.ScreenWidth / 4), Data.ScreenHeight / 2);
 
             playerOneLeft = new Button(arrowButtonText, new Rectangle((int)(playerOneSelect.Position.X - 50), (int)playerOneSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4), SpriteEffects.FlipHorizontally);
-            playerOneRight = new Button(arrowButtonText, new Rectangle((int)(playerOneSelect.Position.X + playerOneSelect.SourceRectangle.Width + 50), (int)playerOneSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4));
+            playerOneRight = new Button(arrowButtonText, new Rectangle((int)(playerOneSelect.Position.X + playerOneSelect.SourceRectangle.Width + 100), (int)playerOneSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4));
 
             playerTwoLeft = new Button(arrowButtonText, new Rectangle((int)(playerTwoSelect.Position.X - 50), (int)playerTwoSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4), SpriteEffects.FlipHorizontally);
-            playerTwoRight = new Button(arrowButtonText, new Rectangle((int)(playerTwoSelect.Position.X + playerTwoSelect.SourceRectangle.Width + 50), (int)playerTwoSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4));
+            playerTwoRight = new Button(arrowButtonText, new Rectangle((int)(playerTwoSelect.Position.X + playerTwoSelect.SourceRectangle.Width + 100), (int)playerTwoSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4));
 
-            buttons = new Button[4];
+            startButton = new Button(startText, new Rectangle((Data.ScreenWidth - startText.Width) / MenuScene.scalingFactor / 2, (Data.ScreenHeight - startText.Height) / MenuScene.scalingFactor / 2, startText.Width / MenuScene.scalingFactor, startText.Height / MenuScene.scalingFactor));
+
+            buttons = new Button[5];
             buttons[0] = playerOneLeft;
             buttons[1] = playerOneRight;
             buttons[2] = playerTwoLeft;
             buttons[3] = playerTwoRight;
+            buttons[4] = startButton;
         }
 
         public override void Update(GameTime gameTime)
         {
             userInput.UpdateMouse(gameTime);
 
-            foreach(Button button in buttons)
+            foreach (Button button in buttons)
             {
                 button.Update(userInput.mousePos);
             }
@@ -120,7 +126,7 @@ namespace HitboxesAndHurtboxes.Scenes
 
         public override void Draw(SpriteBatch sb, GameTime gameTime)
         {
-            foreach(Button button in buttons)
+            foreach (Button button in buttons)
             {
                 button.Draw(sb);
             }
