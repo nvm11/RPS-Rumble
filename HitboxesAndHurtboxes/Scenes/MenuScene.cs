@@ -57,17 +57,17 @@ namespace HitboxesAndHurtboxes.Scenes
 
             //change state if needed
 
-            if (buttons[0].ButtonColor == Color.Gray  && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //char select
+            if (buttons[0].ButtonColor == Color.Gray  && userInput.LeftButtonReleased()) //char select
             {
                 Data.CurrentState = 1;
             }
 
-            if (buttons[1].ButtonColor == Color.Gray && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //options
+            if (buttons[1].ButtonColor == Color.Gray && userInput.LeftButtonReleased()) //options
             {
                 Data.CurrentState = 2;
             }
 
-            if (buttons[2].ButtonColor == Color.Gray && userInput.ms.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed) //exit
+            if (buttons[2].ButtonColor == Color.Gray && userInput.LeftButtonReleased()) //exit
             {
                 Data.Exit = true;
             }

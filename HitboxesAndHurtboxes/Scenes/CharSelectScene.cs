@@ -120,6 +120,8 @@ namespace HitboxesAndHurtboxes.Scenes
                 playerTwoSelect.Color = characterClrs[playerTwoClr];
             }
 
+            else if (startButton.ButtonColor == Color.Gray && userInput.LeftButtonReleased())
+
             playerOneSelect.UpdateAnimation(gameTime);
             playerTwoSelect.UpdateAnimation(gameTime);
         }
