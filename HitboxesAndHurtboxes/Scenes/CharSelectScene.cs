@@ -58,7 +58,7 @@ namespace HitboxesAndHurtboxes.Scenes
             playerTwoLeft = new Button(arrowButtonText, new Rectangle((int)(playerTwoSelect.Position.X - 50), (int)playerTwoSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4), SpriteEffects.FlipHorizontally);
             playerTwoRight = new Button(arrowButtonText, new Rectangle((int)(playerTwoSelect.Position.X + playerTwoSelect.SourceRectangle.Width + 100), (int)playerTwoSelect.Position.Y, arrowButtonText.Width / 4, arrowButtonText.Height / 4));
 
-            startButton = new Button(startText, new Rectangle((Data.ScreenWidth - startText.Width) / MenuScene.scalingFactor / 2, (Data.ScreenHeight - startText.Height) / MenuScene.scalingFactor / 2, startText.Width / MenuScene.scalingFactor, startText.Height / MenuScene.scalingFactor));
+            startButton = new Button(startText, new Rectangle((Data.ScreenWidth - startText.Width / MenuScene.scalingFactor) / 2, (Data.ScreenHeight - startText.Height / MenuScene.scalingFactor) / 2, startText.Width / MenuScene.scalingFactor, startText.Height / MenuScene.scalingFactor));
 
             buttons = new Button[5];
             buttons[0] = playerOneLeft;
@@ -104,9 +104,8 @@ namespace HitboxesAndHurtboxes.Scenes
                 if (playerOneClr == characterClrs.Length)
                 {
                     playerOneClr = 0;
-
-                    playerOneSelect.Color = characterClrs[playerOneClr];
                 }
+                playerOneSelect.Color = characterClrs[playerOneClr];
 
             }
 
@@ -121,6 +120,9 @@ namespace HitboxesAndHurtboxes.Scenes
             }
 
             else if (startButton.ButtonColor == Color.Gray && userInput.LeftButtonReleased())
+            {
+                Data.CurrentState = 3;
+            }
 
             playerOneSelect.UpdateAnimation(gameTime);
             playerTwoSelect.UpdateAnimation(gameTime);
