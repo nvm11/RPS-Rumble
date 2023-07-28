@@ -59,15 +59,5 @@ namespace HitboxesAndHurtboxes.Scenes
                 //select option
             }
         }
-
-        /// <summary>
-        /// checks if player 2 has input a selection
-        /// and either stops or continues checking
-        /// temp control scheme: leftArr, upArr, rightArr
-        /// </summary>
-        private void CheckPlayer2Input()
-        {
-
-        }
     }
 }
