@@ -70,6 +70,12 @@ namespace HitboxesAndHurtboxes
         private Animation currentAnimation { get; set; }
 
         /// <summary>
+        /// gets or sets health of player obj
+        ///
+        /// </summary>
+        int Health { get; set; }
+
+        /// <summary>
         /// instantiates a player object with every
         /// field specified
         /// </summary>
@@ -82,7 +88,8 @@ namespace HitboxesAndHurtboxes
         /// <param name="state">current state</param>
         /// <param name="position">position of player</param>
         /// <param name="effects">effects on obj</param>
-        public Player(Animation idle, Animation rock, Animation paper, Animation scissors, Animation takeDamage, Color color, PlayerState state, Vector2 position, SpriteEffects effects)
+        /// <param name="health">health of obk</param>
+        public Player(Animation idle, Animation rock, Animation paper, Animation scissors, Animation takeDamage, Color color, PlayerState state, Vector2 position, SpriteEffects effects, int health)
         {
             Idle = idle;
             Rock = rock;
@@ -93,10 +100,11 @@ namespace HitboxesAndHurtboxes
             State = state;
             Position = position;
             Effects = effects;
+            Health = health;
         }
 
         /// <summary>
-        /// overload with default values for PlayerState and SpriteEffects
+        /// overload with default values for PlayerState SpriteEffects, and health
         /// </summary>
         /// <param name="idle">idle animation</param>
         /// <param name="rock">rock animation</param>
@@ -106,7 +114,7 @@ namespace HitboxesAndHurtboxes
         /// <param name="color">color of player</param>
         /// <param name="position">position of player</param>
         public Player(Animation idle, Animation rock, Animation paper, Animation scissors, Animation takeDamage, Color color, Vector2 position) 
-        :this(idle, rock, paper, scissors, takeDamage, color, PlayerState.Idle, position, SpriteEffects.None){ }
+        :this(idle, rock, paper, scissors, takeDamage, color, PlayerState.Idle, position, SpriteEffects.None, 5){ }
 
         /// <summary>
         /// updates the current animation
