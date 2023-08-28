@@ -16,6 +16,7 @@ namespace HitboxesAndHurtboxes.Managers
     {
         MenuScene ms = new MenuScene();
         CharSelectScene cs = new CharSelectScene();
+        
 
         /// <summary>
         /// initializes the menu scene

@@ -25,13 +25,29 @@ namespace HitboxesAndHurtboxes.Scenes
 
     internal class GameScene : Component
     {
+
         public Input userInput;
-        private bool P1Input;
-        private bool P2Input;
+
+        public Player p1;
+        public Player p2;
+
+        public Color p1Color;
+        public Color p2Color;
+
+        float counter;
+
+        GameScene(Color p1, Color p2)
+        {
+            p1Color= p1;
+            p2Color= p2;
+        }
 
         public override void Initialize(ContentManager content)
         {
             userInput = new Input();
+            p1 = new Player();
+            p2 = new Player();
+            counter = 0.0f;
         }
 
         public override void Update(GameTime gameTime)
