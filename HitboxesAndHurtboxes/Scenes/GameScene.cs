@@ -13,20 +13,26 @@ using HitboxesAndHurtboxes.Managers;
 //manages the gameplay scene of the game
 namespace HitboxesAndHurtboxes.Scenes
 {
-    public enum playerState
-    {
-        Idle,
-        Rock,
-        Paper,
-        Scissors,
-        TakeDamage
-    }
-
-
     internal class GameScene : Component
     {
 
         public Input userInput;
+
+        private Texture2D rockText;
+        private Texture2D paperText;
+        private Texture2D scissorsText;
+
+        private Texture2D idleSpriteSheet;
+        private Texture2D rockSprieSheet;
+        private Texture2D paperSpriteSheet;
+        private Texture2D scissorsSpriteSheet;
+
+        private Animation idleAnim;
+        private Animation rockAnim;
+        private Animation paperAnim;
+        private Animation scissorsAnim;
+
+
 
         public Player p1;
         public Player p2;
