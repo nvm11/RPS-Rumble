@@ -36,12 +36,6 @@ namespace HitboxesAndHurtboxes.Scenes
 
         float counter;
 
-        GameScene(Color p1, Color p2)
-        {
-            p1Color= p1;
-            p2Color= p2;
-        }
-
         public override void Initialize(ContentManager content)
         {
             userInput = new Input();
