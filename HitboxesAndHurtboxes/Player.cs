@@ -96,7 +96,7 @@ namespace HitboxesAndHurtboxes
         }
 
         /// <summary>
-        /// instantiates a player obj with a default value for health
+        /// instantiates a player obj with a default value for health and state
         /// </summary>
         /// <param name="idle">idle anim</param>
         /// <param name="rock">rock anim</param>
@@ -106,8 +106,8 @@ namespace HitboxesAndHurtboxes
         /// <param name="state">state</param>
         /// <param name="position">position</param>
         /// <param name="effects">sprite effects</param>
-        public Player(Animation idle, Animation rock, Animation paper, Animation scissors, Color color, PlayerState state, Vector2 position, SpriteEffects effects)
-        : this(idle, rock, paper, scissors, color, state, position, effects, 5) { }
+        public Player(Animation idle, Animation rock, Animation paper, Animation scissors, Color color, Vector2 position, SpriteEffects effects)
+        : this(idle, rock, paper, scissors, color, PlayerState.Idle, position, effects, 5) { }
 
         /// <summary>
         /// overload with default values for PlayerState SpriteEffects, and health

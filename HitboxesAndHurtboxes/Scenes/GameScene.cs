@@ -37,16 +37,33 @@ namespace HitboxesAndHurtboxes.Scenes
         public Player p1;
         public Player p2;
 
-        public Color p1Color;
-        public Color p2Color;
+        public Vector2 p1Pos;
+        public Vector2 p2Pos;
 
         float counter;
 
         public override void Initialize(ContentManager content)
         {
+            rockText = content.Load<Texture2D>("RPS_RockFinal");
+            paperText = content.Load<Texture2D>("RPS_PaperFinal");
+            scissorsText = content.Load<Texture2D>("RPS_ScissorsFinal");
+
+            idleSpriteSheet = content.Load<Texture2D>("RPS_IdleAnim");
+            rockSprieSheet = content.Load<Texture2D>("RPS_RockAnim");
+            paperSpriteSheet = content.Load<Texture2D>("RPS_PaperAnim");
+            scissorsSpriteSheet = content.Load<Texture2D>("RPS_ScissorsAnim");
+
+            idleAnim = new Animation(idleSpriteSheet, 1, 2, 3);
+            rockAnim = new Animation(rockSprieSheet, 3, 3, 20);
+            paperAnim = new Animation(paperSpriteSheet, 3, 3, 20);
+            scissorsAnim = new Animation(scissorsSpriteSheet, 3, 3, 20);
+
+            //p1Pos set equal distance from each other
+            //p2Pos set equal distance from each other
+
             userInput = new Input();
-            p1 = new Player();
-            p2 = new Player();
+            p1 = new Player(idleAnim.Clone(), rockAnim.Clone(), paperAnim.Clone(), scissorsAnim.Clone(), CharSelectScene.characterClrs[CharSelectScene.playerOneClr], p1Pos);
+            p2 = new Player(idleAnim.Clone(), rockAnim.Clone(), paperAnim.Clone(), scissorsAnim.Clone(), CharSelectScene.characterClrs[CharSelectScene.playerTwoClr], p2Pos, SpriteEffects.FlipHorizontally);
             counter = 0.0f;
         }
 

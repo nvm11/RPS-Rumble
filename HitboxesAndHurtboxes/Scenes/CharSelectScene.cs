@@ -18,8 +18,8 @@ namespace HitboxesAndHurtboxes.Scenes
         public Input userInput;
 
         public static Color[] characterClrs = { Color.White, Color.Red, Color.Blue, Color.Yellow, Color.Green, Color.Orange, Color.Pink, Color.Purple, Color.Brown };
-        public int playerOneClr;
-        public int playerTwoClr;
+        public static int playerOneClr;
+        public static int playerTwoClr;
 
         private Texture2D charSelectText;
         private Texture2D arrowButtonText;
